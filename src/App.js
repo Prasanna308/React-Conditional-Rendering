@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+// Child Component
+function Message() {
+  return (
+    <div style={{ marginTop: "20px", fontSize: "20px", color: "green" }}>
+      🎉 This is a toggled message!
+    </div>
+  );
+}
 
 function App() {
+  // State to track visibility
+  const [show, setShow] = useState(false);
+
+  // Toggle function
+  const toggleMessage = () => {
+    setShow(!show);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Conditional Rendering </h1>
+
+      {/* Toggle Button */}
+      <button
+        onClick={toggleMessage}
+        style={{ marginTop: "20px", padding: "10px 20px" }}
+      >
+        {show ? "Hide Message" : "Show Message"}
+      </button>
+
+      {/* Conditional Rendering */}
+      {show && <Message />}
     </div>
   );
 }
